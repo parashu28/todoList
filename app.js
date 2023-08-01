@@ -126,9 +126,9 @@ async function main() {
         res.render("about");
     });
 
-    app.listen(3000, function () {
-        console.log("Server started on port 3000");
-    });
+    // app.listen(3000, function () {
+    //     console.log("Server started on port 3000");
+    // });
 
     // Disconnect from MongoDB when the application closes
     mongoose.connection.on("close", () => {
