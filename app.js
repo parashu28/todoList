@@ -14,7 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
-main().catch(err => console.log(err));
+main().then(() => {
+    app.listen(3000, () => {
+        console.log("Server started on port 3000");
+    });
+}).catch(err => console.log(err));
+
 async function main() {
     const encodedPassword = encodeURIComponent("RAM@sp143");
     const connectionString = "mongodb+srv://sherlock:" + encodedPassword + "@cluster0.qpnk2gf.mongodb.net/todolistDB?retryWrites=true&w=majority";
@@ -124,10 +129,6 @@ async function main() {
 
     app.get("/about", function (req, res) {
         res.render("about");
-    });
-
-    app.listen(3000, function () {
-        console.log("Server started on port 3000");
     });
 
     // Disconnect from MongoDB when the application closes
